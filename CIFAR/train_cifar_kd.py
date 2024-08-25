@@ -1,4 +1,6 @@
 import os
+import secrets
+
 os.environ['CUDA_VISIBLE_DEVICES'] = '0,1'
 import torch
 import torchvision
@@ -16,7 +18,6 @@ import numpy as np
 from pathlib import Path
 import time
 import json
-import random
 import logging
 import argparse
 import warnings
@@ -270,7 +271,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.seed is not None:
-        random.seed(args.seed)
+        secrets.SystemRandom().seed(args.seed)
         torch.manual_seed(args.seed)
         cudnn.deterministic = True
         cudnn.benchmark = False

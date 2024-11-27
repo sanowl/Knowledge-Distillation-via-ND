@@ -20,11 +20,11 @@ from pathlib import Path
 import os
 import time
 import json
-import random
 import argparse
 import warnings
 from torch.utils.tensorboard import SummaryWriter
 import pdb
+import secrets
 
 
 def main(args, teacher, T_EMB):
@@ -451,7 +451,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.seed is not None:
-        random.seed(args.seed)
+        secrets.SystemRandom().seed(args.seed)
         torch.manual_seed(args.seed)
         cudnn.deterministic = True
         cudnn.benchmark = False
